@@ -16,7 +16,7 @@ vignette: >
 
 # Introduction
 
-TESTdv Analyzing consumers’ perception of complex concepts through a set of stimuli (e.g. a set of products, a set of advertising videos) is becoming of the main interest in the marketing field. To meet this increasing expectation, a new methodology has been developed in consumer research with the aim of studying how consumers perceive a given complex concept through a set of stimuli (see Brard & Lê (2017)). In practice, each participant of the panel is asked to sort the stimuli into two predefined categories: stimuli assessed as non-representative of the concept and stimuli assessed as representative of the concept. Such an experimental protocol presents strong similarities with the Q-sort, which refers to one of the steps in the Q-methodology used in psychology to study human subjectivity and which consists in asking participants to sort some statements into ordinal predefined categories corresponding to a continuum of agreement (see Stephenson, 1953). With the aim of distinguishing these two procedures according to the rating scale used during the protocol, the present methodology used in consumer research is referred to as *binary Q-method*.
+Analyzing consumers’ perception of complex concepts through a set of stimuli (e.g. a set of products, a set of advertising videos) is becoming of the main interest in the marketing field. To meet this increasing expectation, a new methodology has been developed in consumer research with the aim of studying how consumers perceive a given complex concept through a set of stimuli (see Brard & Lê (2017)). In practice, each participant of the panel is asked to sort the stimuli into two predefined categories: stimuli assessed as non-representative of the concept and stimuli assessed as representative of the concept. Such an experimental protocol presents strong similarities with the Q-sort, which refers to one of the steps in the Q-methodology used in psychology to study human subjectivity and which consists in asking participants to sort some statements into ordinal predefined categories corresponding to a continuum of agreement (see Stephenson, 1953). With the aim of distinguishing these two procedures according to the rating scale used during the protocol, the present methodology used in consumer research is referred to as *binary Q-method*.
 
 In this vignette, we present the `BinQmet` package, a package that provides a statistical procedure to analyse data obtained during binary Q-method experiment. The present statistical procedure involves a stimulus-oriented statistical analysis and a participant-oriented analysis that are exposed hereafter. 
 
@@ -34,7 +34,7 @@ devtools::install_github("MargotBr/BinQmet", build_vignettes = TRUE)
 library(BinQmet)
 ```
 
-```{r eval = FALSE}
+```{r echo = FALSE}
 library(BinQmet)
 ```
 
