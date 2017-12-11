@@ -17,4 +17,3 @@ To get an overview of the functionalities of the package, read the corresponding
   ```{r eval=FALSE}
 vignette("BinQmet")
 ```
-# BinQmet
