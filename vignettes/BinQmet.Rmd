@@ -58,7 +58,7 @@ help(analyse.BinQmet)
 
 To illustrate the outputs and graphs of the function, let's use a small pedagogic data set named *pedagdata*. This data set refers to the ratings of the representativeness of a given concept provided to 8 stimuli by a panel of 20 participants. In this data set, '1' stands for a 'representative of the concept' assessment, and '0' stands for a 'not representative of the concept' assessment. These binary Q-method data are supplemented by covariates providing information about the stimuli and the raters. The columns 21, 22, 23, 24, and 25 provide information about the stimuli: *Citrus fruits intensity* (continuous), *Vanilla intensity* (continuous), *Wood intensity* (continuous), *Lotus intensity* (continuous), and *Packaging* which is either the current one or a prototype (categorical). The lines 9, 10, 11 provide information about the raters: *Gender* (categorical), *Age bracket* (categorical), *Frequency of use* (categorical). The code to import and visualize this data set is:
 
-```{r eval = FALSE}
+```{r}
 data(pedagdata)
 pedagdata
 ```
@@ -81,7 +81,7 @@ Finally, the code to implement the procedure is:
 res.pedag <- analyse.BinQmet(pedagdata, id.info.stim = 21 : ncol(pedagdata), type.info.stim = c(rep("cont", 4), "cat"), id.info.part = 9 : nrow(pedagdata), type.info.part = rep("cat", 3))
 ```
 
-```{r echo = FALSE, echo = FALSE, message = FALSE}
+```{r echo = FALSE, message = FALSE}
 res.pedag <- analyse.BinQmet(pedagdata, id.info.stim = 21 : ncol(pedagdata), type.info.stim = c(rep("cont", 4), "cat"), id.info.part = 9 : nrow(pedagdata), type.info.part = c(rep("cat", 2), "cont"), graph = FALSE)
 res.pedag
 ```
