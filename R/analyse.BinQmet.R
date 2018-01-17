@@ -1,4 +1,4 @@
-analyse.BinQmet <- function(dta, id.info.stim = NULL, type.info.stim = NULL, id.info.part = NULL, type.info.part = NULL, graph = TRUE, ext.dev.Rstudio = FALSE, ...) {
+analyse.BinQmet <- function(dta, id.info.stim = NULL, type.info.stim = NULL, id.info.part = NULL, type.info.part = NULL, axis = c(1, 2), graph = TRUE, ext.dev.Rstudio = FALSE,...) {
 
   options(warn = -1)
 
@@ -38,7 +38,6 @@ analyse.BinQmet <- function(dta, id.info.stim = NULL, type.info.stim = NULL, id.
   names(res[[1]]) <- c("dta", "id.info.part", "type.info.part", "id.info.stim", "type.info.stim")
 
   # create the factorial map of the stimuli
-  axes <- 1 : 2
   dta.quanti <- apply(apply(dta, 2, as.character), 2, as.numeric)
   sum.pos.ratings <- apply(dta.quanti, 1, sum)
   sum.neg.ratings <- ncol(dta) - sum.pos.ratings
@@ -46,7 +45,7 @@ analyse.BinQmet <- function(dta, id.info.stim = NULL, type.info.stim = NULL, id.
   res[[2]] <- dta.binQ
   colnames(dta.binQ)[(ncol(dta) + 1) : ncol(dta.binQ)] <- c("1", "0")
   res.mfa <- MFA(dta.binQ, group = c(ncol(dta), 2), type <- c("n", "f"), name.group = c("groups", "association"), graph = FALSE)
-  coord.stim <- as.data.frame(res.mfa$ind$coord[, axes])
+  coord.stim <- as.data.frame(res.mfa$ind$coord[, axis])
   colnames(coord.stim) <- c("axeA", "axeB")
   res[[3]] <- res.mfa
 
@@ -54,7 +53,7 @@ analyse.BinQmet <- function(dta, id.info.stim = NULL, type.info.stim = NULL, id.
   col.pos.ratings <- "#EA485C"
   col.neg.ratings <- "#A9A9A9"
   resolution <- 200
-  coord.and.categories <- cbind.data.frame(rownames(dta), res.mfa$ind$coord[rownames(dta), axes], dta)
+  coord.and.categories <- cbind.data.frame(rownames(dta), res.mfa$ind$coord[rownames(dta), axis], dta)
   x1 <- coord.and.categories[, 2]
   x2 <- coord.and.categories[, 3] # coordonnee 2
   x12 <- scale(x1, center = TRUE, scale = FALSE)[, ] * scale(x2,center = TRUE, scale = FALSE)[, ] 	# interaction between 1st & 2nd coordinate
@@ -91,7 +90,7 @@ analyse.BinQmet <- function(dta, id.info.stim = NULL, type.info.stim = NULL, id.
   col.pos  <- palette.col.pos(50)
   col <- c(col.neg, col.pos)
   plot.stim <- ggplot(NULL) +
-    labs(x = paste("Dim ", 1," - ", round(res.mfa$eig[axes[1], 2], 2), " %", sep = ""), y = paste("Dim ", 2, " - ", round(res.mfa$eig[axes[2], 2], 2), " %", sep = "")) +
+    labs(x = paste("Dim ", 1," - ", round(res.mfa$eig[axis[1], 2], 2), " %", sep = ""), y = paste("Dim ", 2, " - ", round(res.mfa$eig[axis[2], 2], 2), " %", sep = "")) +
     coord_fixed()+
     geom_raster(data = mat.surface, aes(f1, f2, fill = z)) +
     scale_fill_gradientn(colours = c(col.neg, "#FFFFFFFF", col.pos), name="% of participants who assessed \n this stimulus as representative \n of the concept", guide = "colorbar", limits = c(0, 100)) +

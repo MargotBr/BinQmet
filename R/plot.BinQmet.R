@@ -42,6 +42,10 @@ plot.BinQmet <- function(res, choice = "all", interact = FALSE, col.pos.ratings 
     dta <- dta[, -res$call$id.info.stim]
     dta <- droplevels(dta)
   }
+  if(is.null(res$call$id.info.part) & is.null(res$call$id.info.stim)) {
+    dta <- res$call$dta
+    dta <- droplevels(dta)
+  }
   nbrater <- ncol(dta)
   nbstim <- nrow(dta)
 
