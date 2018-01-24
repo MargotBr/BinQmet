@@ -9,7 +9,7 @@ plot.BinQmet(res, choice = "all", interact = FALSE, col.pos.ratings = NULL, col.
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{res}{
-An object of class BinQmet returned by the function BinQmet.}
+An object of class BinQmet returned by the function analyse.BinQmet.}
   \item{choice}{
 A character element specifying the graphs to be plotted ('stim' for the concept representation mapping, 'part.seg' for the representation of the segmentation process of the participants (dendrogram + partitioning if a consolidation process has been implemented), 'part.mul' for the multidimensional representation of the structure of disagreement (PCA) among the panel of participants, 'all' for all representations. By default, all representations are plotted.)}
   \item{interact}{
