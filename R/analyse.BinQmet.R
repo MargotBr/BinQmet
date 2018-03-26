@@ -25,6 +25,7 @@ analyse.BinQmet <- function(dta, id.info.stim = NULL, type.info.stim = NULL, id.
     dta <- dta[, -id.info.stim]
     dta <- droplevels(dta)
   }
+  dta <- apply(dta, 2, as.factor)
 
   # calculate the numbers of raters and stimuli
   nbrater <- ncol(dta)
