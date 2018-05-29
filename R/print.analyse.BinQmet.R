@@ -10,7 +10,7 @@ print.analyse.BinQmet <- function (res){
       "stimuli assessed by", (ncol(res$call$dta) - length(res$call$id.info.stim)), "participants\n")
   cat("The results are available in the following objects:\n\n")
   res.desc <- array("", c(5, 2), list(1 : 5, c("name", "description")))
-  res.desc[1, ] <- c("$call", "arguments used in the BinQmet function")
+  res.desc[1, ] <- c("$call", "arguments used in the analyse.BinQmet function")
   res.desc[2, ] <- c("$BinQmet.data", "multiple table corresponding to a binary Q-method dataset")
   res.desc[3, ] <- c("$res.mfa", "MFA results")
   res.desc[4, ] <- c("$concept.surface", "response surface (i.e. strength of the representativeness of the concept)")
