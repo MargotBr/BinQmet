@@ -50,10 +50,10 @@ If external information about the stimuli and/or the participants was collected 
 
 # Implementing the procedure
 
-The `analyse.BinQmet` function implements the stimulus- and the participant-oriented statistical analysis presented previously. The help page of the functions can be accessed with this code:
+The `AnalyseBinQmet` function implements the stimulus- and the participant-oriented statistical analysis presented previously. The help page of the functions can be accessed with this code:
 
 ```{r}
-help(analyse.BinQmet)
+help(AnalyseBinQmet)
 ```
 
 To illustrate the outputs and graphs of the function, let's use a small pedagogic data set named *pedagdata*. This data set refers to the ratings of the representativeness of a given concept provided to 8 stimuli by a panel of 20 participants. In this data set, '1' stands for a 'representative of the concept' assessment, and '0' stands for a 'not representative of the concept' assessment. These binary Q-method data are supplemented by covariates providing information about the stimuli and the raters. The columns 21, 22, 23, 24, and 25 provide information about the stimuli: *Citrus fruits intensity* (continuous), *Vanilla intensity* (continuous), *Wood intensity* (continuous), *Lotus intensity* (continuous), and *Packaging* which is either the current one or a prototype (categorical). The lines 9, 10, 11 provide information about the raters: *Gender* (categorical), *Age bracket* (categorical), *Frequency of use* (categorical). The code to import and visualize this data set is:
@@ -63,7 +63,7 @@ data(pedagdata)
 pedagdata
 ```
 
-The `analyse.BinQmet` function uses by default the following other important arguments:
+The `AnalyseBinQmet` function uses by default the following other important arguments:
 
 - `dta`, specifying the name of the data set to be used;
 - `id.info.stim = NULL`, `type.info.stim = NULL`, `id.info.part = NULL`, and `type.info.part = NULL`, meaning that no covariates about either the stimuli nor the participants are available in the data set. 
@@ -78,11 +78,11 @@ As the data set contains covariates about the stimuli and the participants, the 
 Finally, the code to implement the procedure is:
 
 ```{r eval = FALSE}
-res.pedag <- analyse.BinQmet(pedagdata, id.info.stim = 21 : ncol(pedagdata), type.info.stim = c(rep("cont", 4), "cat"), id.info.part = 9 : nrow(pedagdata), type.info.part = rep("cat", 3))
+res.pedag <- AnalyseBinQmet(pedagdata, id.info.stim = 21 : ncol(pedagdata), type.info.stim = c(rep("cont", 4), "cat"), id.info.part = 9 : nrow(pedagdata), type.info.part = rep("cat", 3))
 ```
 
 ```{r echo = FALSE, message = FALSE}
-res.pedag <- analyse.BinQmet(pedagdata, id.info.stim = 21 : ncol(pedagdata), type.info.stim = c(rep("cont", 4), "cat"), id.info.part = 9 : nrow(pedagdata), type.info.part = c(rep("cat", 2), "cont"), graph = FALSE)
+res.pedag <- AnalyseBinQmet(pedagdata, id.info.stim = 21 : ncol(pedagdata), type.info.stim = c(rep("cont", 4), "cat"), id.info.part = 9 : nrow(pedagdata), type.info.part = c(rep("cat", 2), "cont"), graph = FALSE)
 res.pedag
 ```
 
@@ -105,13 +105,13 @@ names(res.pedag$res.mfa)
 The first graph created by the function is the first MFA factorial plane. On this factorial plane, two stimuli are close (resp. distant) if they represent the concept in the same way (resp. in a different way). With the aim of helping the user to easily detect the areas associated with a high degree of representativeness of the concept and the areas associated with a low degree of representativeness of the concept, a response surface is projected on this factorial plane. The computation of this response surface is described in Brard & Lê (2017). In the present pedagogic example, the panel of participants highlighted two groups of stimuli: stimuli *Stim1*, *Stim2*, *Stim3*, and *Stim4* (rather not representative of the concept) on the one hand; and stimuli *Stim5*, *Stim6*, *Stim7*, and *Stim8* (rather representative of the concept) on the other hand.
 
 ```{r echo = FALSE, fig.width = 14, message = FALSE, results = FALSE}
-plot.BinQmet(res.pedag, choice = "stim", col.pos.ratings = "#F36170")
+plot.AnalyseBinQmet(res.pedag, choice = "stim", col.pos.ratings = "#F36170")
 ```
 
-The areas can be colored according to new colors in this plot. To do so, the following code using the `plot.BinQmet` function is used:
+The areas can be colored according to new colors in this plot. To do so, the following code using the `plot.AnalyseBinQmet` function is used:
 
 ```{r echo = FALSE, fig.width = 14, message = FALSE, results = FALSE}
-plot.BinQmet(res.pedag, choice = "stim", col.pos.ratings = "orange")
+plot.AnalyseBinQmet(res.pedag, choice = "stim", col.pos.ratings = "orange")
 ```
 
 We can draw a bar plot with the eigenvalues of MFA with the following code:
@@ -125,22 +125,22 @@ barplot(res.pedag$res.mfa$eig[, 1], main = "Eigenvalues", names.arg = paste0("Di
 This graph allows to detect the number of dimensions interesting for the interpretation of the multidimensional representation of the set of stimuli. The user can then plot the graph for the other interesting dimensions, let's say the third and the fourth dimensions (even if in our case, they should not be interpreted):
 
 ```{r eval = FALSE}
-plot.BinQmet(res.pedag, choice = "stim", axis = c(3, 4))
+plot.AnalyseBinQmet(res.pedag, choice = "stim", axis = c(3, 4))
 ```
 
 ```{r echo = FALSE, fig.width = 14, message = FALSE, results = FALSE}
-plot.BinQmet(res.pedag, choice = "stim", axis = c(3, 4), col.pos.ratings = "#F36170")
+plot.AnalyseBinQmet(res.pedag, choice = "stim", axis = c(3, 4), col.pos.ratings = "#F36170")
 ```
 
-The `plot.BinQmet` allows to plot the multidimensional representation of the set of stimuli in an interactive way. By moving the cursor on a point, several pieces of information are printed:
+The `plot.AnalyseBinQmet` allows to plot the multidimensional representation of the set of stimuli in an interactive way. By moving the cursor on a point, several pieces of information are printed:
 
 ```{r eval=FALSE}
-plot.BinQmet(res.pedag, choice = "stim", interact = TRUE)
+plot.AnalyseBinQmet(res.pedag, choice = "stim", interact = TRUE)
 ```
 
 <center>
 ```{r echo = FALSE, fig.width = 10.5, fig.height = 4.5, message = FALSE, warning = FALSE}
-plot.BinQmet(res.pedag, choice = "stim", interact = TRUE, col.pos.ratings = "#F36170", vignette = TRUE)
+plot.AnalyseBinQmet(res.pedag, choice = "stim", interact = TRUE, col.pos.ratings = "#F36170", vignette = TRUE)
 ```
 </center>
 
@@ -163,13 +163,13 @@ res.pedag$res.AgreeClust
 The first graph of the participant-oriented approach shows the clustering process of the participants. The dendrogram representing the structure of disagreement is presented at the top of the graph. In the present example, the $p-$values associated to the different levels of its hierarchy show that two clusters of participants exist among the panel, as the $3-$ latent class model is not significant w.r.t the $2-$ latent class model. The consolidation step, whose the result is presented at the bottom of the graph, did not modify the partition of participants. Finally, we can say that this panel is composed of two disagreed clusters: the first fifteen participants (cluster 1) against the last five participants (cluster 2).
 
 ```{r echo = FALSE, fig.width=8, dpi=400, fig.height=8, message = FALSE, results = FALSE}
-plot.BinQmet(res.pedag, choice = "part.seg", col.clust = c("#42B983", "#F36170"))
+plot.AnalyseBinQmet(res.pedag, choice = "part.seg", col.clust = c("#42B983", "#F36170"))
 ```
 
 The clusters of participants can be colored according to new colors in this plot. To do so, the following code is used:
 
 ```{r fig.width=8, dpi=400, fig.height=8, message=FALSE, results=FALSE}
-plot.BinQmet(res.pedag, choice = "part.seg", col.clust.part = c("green", "orange"))
+plot.AnalyseBinQmet(res.pedag, choice = "part.seg", col.clust.part = c("green", "orange"))
 ```
 
 The second graph of the participant-oriented approach shows the multidimensional representation of the structure of disagreement observed among the panel. This representation is obtained by submitting the $20 \times 8$ matrix contained in the object *res.pedag$res.AgreeClust$profiles.residuals* to a Principal Components Analysis (PCA). PCA provides two main representations: a representation of the individuals (i.e. a representation of the 20 participants) and a representation of the variables (i.e. a representation of the 8 stimuli). On the representation of the participants, two participants are distant if they present a high disagreement. As these two representations are related to each other, the representation of the participants has to be interpreted regarding to the representation of the stimuli. This may be expressed as follows: participants are on the same side as the stimuli they assessed as representative of the concept, and opposite of the stimuli they assessed as not representative of the concept. 
@@ -177,17 +177,17 @@ The second graph of the participant-oriented approach shows the multidimensional
 In the present example, cluster 1 is characterized by 'representative' ratings for stimuli *Stim5*, *Stim6*, *Stim7*, and *Stim8*; and by 'not representative' ratings for stimuli *Stim1*, *Stim2*, *Stim3*, and *Stim4*. On the contrary, cluster 2 is characterized by 'not representative' ratings for stimuli *Stim5*, *Stim6*, *Stim7*, and *Stim8*; and by 'representative' ratings for stimuli *Stim1*, *Stim2*, *Stim3*, and *Stim4*. The aim of this plot is to help the user to easily detect the main axis of disagreement observed among the panel of participants.
 
 ```{r echo=FALSE, fig.width=8, dpi=400, fig.height=5, message=FALSE, results=FALSE}
-plot.BinQmet(res.pedag, choice = "part.mul", col.clust = c("#42B983", "#F36170"))
+plot.AnalyseBinQmet(res.pedag, choice = "part.mul", col.clust = c("#42B983", "#F36170"))
 ```
 
-The `plot.BinQmet` allows to plot this multidimensional representation of the structure of disagreement in an interactive way. By moving the cursor on a point, several pieces of information are printed:
+The `plot.AnalyseBinQmet` allows to plot this multidimensional representation of the structure of disagreement in an interactive way. By moving the cursor on a point, several pieces of information are printed:
 
 ```{r eval = FALSE}
-plot.BinQmet(res.pedag, choice = "part.mul", interact = TRUE)
+plot.AnalyseBinQmet(res.pedag, choice = "part.mul", interact = TRUE)
 ```
 
 ```{r echo = FALSE, message = FALSE, warning = FALSE, fig.width=10, fig.height=6}
-plot.BinQmet(res.pedag, choice = "part.mul", interact = TRUE, col.clust = c("#42B983", "#F36170"), vignette = TRUE)
+plot.AnalyseBinQmet(res.pedag, choice = "part.mul", interact = TRUE, col.clust = c("#42B983", "#F36170"), vignette = TRUE)
 ```
 
 Finally, the participant-oriented approach provides an automatic description of the clusters of participants. This description can be accessed with this code: 
@@ -206,9 +206,9 @@ A real binary Q-method data set is also available in the help page of the packag
 
 ```{r eval = FALSE}
 data(perfumes)
-res.perfumes <- analyse.BinQmet(perfumes, id.info.stim = 121 : ncol(perfumes), type.info.stim = rep("cont", 27), id.info.part = 40 : nrow(perfumes), type.info.part = rep("cat", 2))
+res.perfumes <- AnalyseBinQmet(perfumes, id.info.stim = 121 : ncol(perfumes), type.info.stim = rep("cont", 27), id.info.part = 40 : nrow(perfumes), type.info.part = rep("cat", 2))
 res.perfumes
-plot.BinQmet(res.perfumes, interact = TRUE)
+plot.AnalyseBinQmet(res.perfumes, interact = TRUE)
 ```
 
 
