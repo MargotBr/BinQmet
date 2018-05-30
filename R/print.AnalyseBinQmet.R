@@ -1,7 +1,7 @@
-print.analyse.BinQmet <- function (res){
+print.AnalyseBinQmet <- function (res){
 
-  if (!inherits(res, "BinQmet")){
-    stop("Non convenient data - res should be a BinQmet object")
+  if (!inherits(res, "AnalyseBinQmet")){
+    stop("Non convenient data - res should be an AnalyseBinQmet object")
   }
 
   cat("** Results for the analysis of the binary Q-method (BinQmet) **\n")

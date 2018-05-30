@@ -1,4 +1,4 @@
-plot.BinQmet <- function(res, choice = "all", interact = FALSE, col.pos.ratings = NULL, col.neg.ratings = NULL, col.clust.part = NULL, axis = c(1, 2), ext.dev.Rstudio = FALSE, vignette = FALSE) {
+plot.AnalyseBinQmet <- function(res, choice = "all", interact = FALSE, col.pos.ratings = NULL, col.neg.ratings = NULL, col.clust.part = NULL, axis = c(1, 2), ext.dev.Rstudio = FALSE, vignette = FALSE) {
 
   options(warn = -1)
 
@@ -16,8 +16,8 @@ plot.BinQmet <- function(res, choice = "all", interact = FALSE, col.pos.ratings 
   }
 
   # check the format of the arguments
-  if (!inherits(res, "BinQmet")) {
-    stop("Non convenient data - res should be a BinQmet object")
+  if (!inherits(res, "AnalyseBinQmet")) {
+    stop("Non convenient data - res should be an AnalyseBinQmet object")
   }
   choice <- match.arg(choice, c("all", "stim", "part.seg", "part.mul"), several.ok = TRUE)
   mat.partition <- cbind.data.frame(res$res.AgreeClust$partition, names(res$res.AgreeClust$partition))

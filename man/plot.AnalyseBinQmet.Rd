@@ -1,10 +1,10 @@
-\name{plot.BinQmet}
-\alias{plot.BinQmet}
+\name{plot.AnalyseBinQmet}
+\alias{plot.AnalyseBinQmet}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Graphical representation of the results of the statistical analysis of binary Q-methodology data}
 \description{Draws the graphs provided by the statistical analysis of binary Q-methodology data. Tunning parameters such as the colors representing the 'representative of the concept' and 'not representative of the concept' areas or the axis of MFA to be plotted can be specified. The function also allows to plot interactive outputs realized with plotly.}
 \usage{
-plot.BinQmet(res, choice = "all", interact = FALSE, col.pos.ratings = NULL, col.neg.ratings = NULL, col.clust.part = NULL, axis = c(1, 2), ext.dev.Rstudio = FALSE)
+plot.AnalyseBinQmet(res, choice = "all", interact = FALSE, col.pos.ratings = NULL, col.neg.ratings = NULL, col.clust.part = NULL, axis = c(1, 2), ext.dev.Rstudio = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -33,15 +33,15 @@ Returns the graphical representations.
 }
 \author{Margot Brard \email{margot.brard@agrocampus-ouest.fr}}
 \seealso{
-\code{\link{analyse.BinQmet}}
+\code{\link{AnalyseBinQmet}}
 }
 \examples{
 # Small pedagogic data set
 data(pedagdata)
 res.pedag <- analyse.BinQmet(pedagdata, id.info.stim = 21 : ncol(pedagdata), type.info.stim = c(rep("cont", 4), "cat"), id.info.part = 9 : nrow(pedagdata), type.info.part = c(rep("cat", 2), "cont"))
-plot.BinQmet(res.pedag, choice = "stim", col.pos.ratings = "orange")
-plot.BinQmet(res.pedag, choice = "stim", interact = TRUE, col.pos.ratings = "orange")
-plot.BinQmet(res.pedag, choice = "part.mul", interact = TRUE)
+plot.AnalyseBinQmet(res.pedag, choice = "stim", col.pos.ratings = "orange")
+plot.AnalyseBinQmet(res.pedag, choice = "stim", interact = TRUE, col.pos.ratings = "orange")
+plot.AnalyseBinQmet(res.pedag, choice = "part.mul", interact = TRUE)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

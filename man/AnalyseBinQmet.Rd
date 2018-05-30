@@ -1,10 +1,10 @@
-\name{analyse.BinQmet}
-\alias{analyse.BinQmet}
+\name{AnalyseBinQmet}
+\alias{AnalyseBinQmet}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Statistical analysis of binary Q-method data}
 \description{Performs the statistical analysis of binary Q-method data through a stimulus-oriented approach and a participant-oriented approach. The method is able to manage covariates providing informations about the participants and the stimuli to facilitate the interpretation of the results.}
 \usage{
-analyse.BinQmet(dta, id.info.stim = NULL, type.info.stim = NULL, id.info.part = NULL, type.info.part = NULL, graph = TRUE, ext.dev.Rstudio = FALSE, ...)
+AnalyseBinQmet(dta, id.info.stim = NULL, type.info.stim = NULL, id.info.part = NULL, type.info.part = NULL, graph = TRUE, ext.dev.Rstudio = FALSE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -52,13 +52,13 @@ Supplementary arguments of the AgreeClustBin function of the AgreeClust package.
 \examples{
 # Small pedagogic data set
 data(pedagdata)
-res.pedag <- analyse.BinQmet(pedagdata, id.info.stim = 21 : ncol(pedagdata), type.info.stim = c(rep("cont", 4), "cat"), id.info.part = 9 : nrow(pedagdata), type.info.part = c(rep("cat", 2), "cont"))
+res.pedag <- AnalyseBinQmet(pedagdata, id.info.stim = 21 : ncol(pedagdata), type.info.stim = c(rep("cont", 4), "cat"), id.info.part = 9 : nrow(pedagdata), type.info.part = c(rep("cat", 2), "cont"))
 res.pedag
 plot.BinQmet(res.pedag, interact = TRUE)
 
 # 'Perfumes' data set
 data(perfumes)
-res.perfumes <- analyse.BinQmet(perfumes, id.info.stim = 121 : ncol(perfumes), type.info.stim = rep("cont", 27), id.info.part = 40 : nrow(perfumes), type.info.part = rep("cat", 2))
+res.perfumes <- AnalyseBinQmet(perfumes, id.info.stim = 121 : ncol(perfumes), type.info.stim = rep("cont", 27), id.info.part = 40 : nrow(perfumes), type.info.part = rep("cat", 2))
 res.perfumes
 plot.BinQmet(res.perfumes, interact = TRUE)
 }

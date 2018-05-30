@@ -1,4 +1,4 @@
-analyse.BinQmet <- function(dta, id.info.stim = NULL, type.info.stim = NULL, id.info.part = NULL, type.info.part = NULL, axis = c(1, 2), graph = TRUE, ext.dev.Rstudio = FALSE,...) {
+AnalyseBinQmet <- function(dta, id.info.stim = NULL, type.info.stim = NULL, id.info.part = NULL, type.info.part = NULL, axis = c(1, 2), graph = TRUE, ext.dev.Rstudio = FALSE,...) {
 
   options(warn = -1)
 
@@ -127,7 +127,7 @@ analyse.BinQmet <- function(dta, id.info.stim = NULL, type.info.stim = NULL, id.
   names(res) <- c("call", "BinQmet.data", "res.mfa", "res.AgreeClust")
   message("Analysis performed")
   options(warn = 0)
-  class(res) <- c("BinQmet", "list ")
+  class(res) <- c("AnalyseBinQmet", "list ")
   return(res)
 
 }
