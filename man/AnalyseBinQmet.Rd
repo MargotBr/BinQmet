@@ -9,7 +9,7 @@ AnalyseBinQmet(dta, id.info.stim = NULL, type.info.stim = NULL, id.info.part = N
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{dta}{
-A numeric matrix or data frame of dimensions S x P (S=number of stimuli, R=number of participants).}
+A numeric matrix or data frame of dimensions S x P (S=number of stimuli, P=number of participants). This is the minimum needed. But dta can also contain covariates about the stimuli as extra columns and covariates about the participants as extra lines. See the pedagdata dataset for an example.}
  \item{id.info.stim}{
 A vector of integer elements composed of the identification of the columns containing the supplementary information (i.e. covariates) about the stimuli. This argument is optional and, by default, it is fixed to NULL, meaning that dta does not contain supplementary information about the stimuli.}
   \item{type.info.stim}{
