@@ -9,7 +9,7 @@ plot.AnalyseBinQmet(res, choice = "all", interact = FALSE, col.pos.ratings = NUL
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{res}{
-An object of class BinQmet returned by the function analyse.BinQmet.}
+An object of class BinQmet returned by the function AnalyseBinQmet.}
   \item{choice}{
 A character element specifying the graphs to be plotted ('stim' for the concept representation mapping, 'part.seg' for the representation of the segmentation process of the participants (dendrogram + partitioning if a consolidation process has been implemented), 'part.mul' for the multidimensional representation of the structure of disagreement (PCA) among the panel of participants, 'all' for all representations. By default, all representations are plotted.)}
   \item{interact}{
@@ -38,7 +38,7 @@ Returns the graphical representations.
 \examples{
 # Small pedagogic data set
 data(pedagdata)
-res.pedag <- analyse.BinQmet(pedagdata, id.info.stim = 21 : ncol(pedagdata), type.info.stim = c(rep("cont", 4), "cat"), id.info.part = 9 : nrow(pedagdata), type.info.part = c(rep("cat", 2), "cont"))
+res.pedag <- AnalyseBinQmet(pedagdata, id.info.stim = 21 : ncol(pedagdata), type.info.stim = c(rep("cont", 4), "cat"), id.info.part = 9 : nrow(pedagdata), type.info.part = c(rep("cat", 2), "cont"))
 plot.AnalyseBinQmet(res.pedag, choice = "stim", col.pos.ratings = "orange")
 plot.AnalyseBinQmet(res.pedag, choice = "stim", interact = TRUE, col.pos.ratings = "orange")
 plot.AnalyseBinQmet(res.pedag, choice = "part.mul", interact = TRUE)
